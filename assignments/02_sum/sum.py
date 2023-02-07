@@ -13,16 +13,12 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Summing',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        description="Summing", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
 
-    
-    parser.add_argument('INT',
-                        help='Numbers to add',
-                        metavar='INT',
-                        nargs='+',
-                        type=int,
-                        default=0)
+    parser.add_argument(
+        "INT", help="Numbers to add", metavar="INT", nargs="+", type=int, default=0
+    )
 
     return parser.parse_args()
 
@@ -31,11 +27,11 @@ def get_args():
 def main():
     """Make a jazz noise here"""
 
-    args = get_args() 
+    args = get_args()
     INT = args.int
     print(INT)
 
 
 # --------------------------------------------------
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
