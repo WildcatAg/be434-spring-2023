@@ -17,7 +17,7 @@ def get_args():
     )
 
     parser.add_argument(
-        "INT", help="Numbers to add", metavar="INT", nargs="+", type=int, default=0
+        "nums", help="Numbers to add", metavar="INT", nargs="+", type=int, default=0
     )
 
     return parser.parse_args()
@@ -28,8 +28,24 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    INT = args.int
-    print(INT)
+    # careful here, we always use lowercase for strings because upper can be a reserved words
+    # INT = args.int
+
+    # create a total
+    total = 0
+
+    # create a list for putting the numbers from the command line as strings
+    str_numbers = []
+
+    for num in args.nums:
+        total += num
+
+        # add the num to the list as a string
+
+    # print the number statement and total (do this based on the readme)
+    summed_up = ' + '.join(str_numbers)
+
+    print(total)
 
 
 # --------------------------------------------------
