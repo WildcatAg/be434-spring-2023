@@ -28,8 +28,13 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    INT = args.int
+    INT = args.INT
     print(INT)
+
+    #for n in INT:
+        # hint: str.join
+    k = sum(INT)
+    print(k)
 
 
 # --------------------------------------------------
