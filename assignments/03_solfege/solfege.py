@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# This class is derailing me 
+# This class is derailing me hard 
 """
 Author : myles <myles@localhost>
 Date   : 2023-02-12
