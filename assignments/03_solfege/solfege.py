@@ -30,7 +30,6 @@ def main():
     songtable = {'Do':'Do, A deer, a female deer', 'Re':'Re, A drop of golden sun', 'Mi':'Mi, A name I call myself','Fa':'Fa, A long long way to run','Sol':'Sol, A needle pulling thread','La':'La, A note to follow sol','Ti':'Ti, A drink with jam and bread'}
     text = args.text
     
-    newtext = 
     for char in args.text:
         print(songtable.get(char, char), end='')
     print()
