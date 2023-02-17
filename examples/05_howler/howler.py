@@ -29,8 +29,8 @@ def get_args():
 
     args = parser.parse_args()
 
-#    if os.path.isfile(args.text):
-#        open(args.text).read().rstrip()
+    if os.path.isfile(args.text):
+        args.text = open(args.text).read().rstrip()
   
     return args
 
@@ -41,9 +41,9 @@ def main():
     args = get_args()
     
     if args.out:
-        print(args.text.rstrip().upper(), file=open(args.out, 'wt'))
+        print(args.text.upper(), file=open(args.out, 'wt'))
     else:
-        print(args.text.rstrip().upper())
+        print(args.text.upper())
    
 # --------------------------------------------------
 if __name__ == '__main__':
