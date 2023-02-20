@@ -18,6 +18,7 @@ def get_args():
 
     parser.add_argument('text',
                         metavar='str',
+                        type=str,
                         help='Input text')
 
     parser.add_argument('-o',
@@ -25,7 +26,7 @@ def get_args():
                         help='Output filename',
                         metavar='str',
                         type=str,
-                        default='None')
+                        default='')
 
     args = parser.parse_args()
 
@@ -39,11 +40,18 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    
-    if args.out:
-        print(args.text.upper(), file=open(args.out, 'wt'))
+
+    # you named this outfile in the argparse above, not out
+    # changed to outfile
+    if args.outfile:
+        # you need to open the file handle first to print to it
+        out_fh = open(args.outfile, 'wt')
+        # I added the '\n' because you strip this off above
+        # I prefer to use write like so, as we do in the chapter
+        # out_fh.write(args.text.upper() + '\n') 
+        print(args.text.upper() + '\n', file=out_fh)
     else:
-        print(args.text.upper())
+        print(args.text.upper() + '\n')
    
 # --------------------------------------------------
 if __name__ == '__main__':
