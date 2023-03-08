@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 Author : myles <myles@localhost>
-Date   : 2023-02-17
-Purpose: Howler excercise
+Date   : 2023-02-28
+Purpose: Rock the Casbah
 """
-import os
+
 import argparse
+import sys
 
 
 # --------------------------------------------------
@@ -13,38 +14,40 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Howler excercise',
+        description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('text',
-                        metavar='str',
-                        help='Input text')
+    parser.add_argument('positional',
+                        metavar='SEQ',
+                        nargs = '+',
+                        help='Input sequence(s)')
+
 
     parser.add_argument('-o',
                         '--outfile',
                         help='Output filename',
-                        metavar='str',
-                        type=str,
-                        default='None')
+                        metavar='FILE',
+                        type=argparse.FileType('wt'),
+                        default=sys.stdout)
 
-    args = parser.parse_args()
 
-    if os.path.isfile(args.text):
-        args.text = open(args.text).read().rstrip()
-  
-    return args
+    return parser.parse_args()
+
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    
-    if args.outfile:
-        print(args.text.upper(), file=open(args.outfile, 'wt'))
-    else:
-        print(args.text.upper())
-   
+  
+    file_arg = args.FILE
+    seq = args.SEQ
+
+
+    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
+    print(f'positional = "{pos_arg}"')
+
+
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
