@@ -13,11 +13,17 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description="Summing", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        description="Summing", 
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
     parser.add_argument(
-        "nums", help="Numbers to add", metavar="INT", nargs="+", type=int, default=0
+                        "number", 
+                        help="Numbers to add", 
+                        metavar="INT", 
+                        nargs="+", 
+                        type=int, 
+                        default=0
     )
 
     return parser.parse_args()
@@ -28,36 +34,28 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-<<<<<<< HEAD
-    INT = args.INT
-    print(INT)
-=======
+    
     # careful here, we always use lowercase for strings because upper can be a reserved words
-    # INT = args.int
-
+    value = args.number
+    
+    # create a list for putting the numbers from the command line as strings
+    listlength = len(value)
+    numlist = ''
+    numlista = ''
     # create a total
     total = 0
 
-    # create a list for putting the numbers from the command line as strings
-    str_numbers = []
+    for value in args.number:
+        total += value
+        numlist += str(value)
+        numlista = ' + '.join(numlist)
 
-    for num in args.nums:
-        total += num
+    if listlength == 1:
+        print(str(value)+' = '+str(value))
+    else:
+        print(str(numlista) +' = '+str(total))
 
-        # add the num to the list as a string
-
-    # print the number statement and total (do this based on the readme)
-    summed_up = ' + '.join(str_numbers)
-
-    print(total)
->>>>>>> d0939370c34ea492c7db6aa79dc0783080d47053
-
-    #for n in INT:
-        # hint: str.join
-    k = sum(INT)
-    print(k)
-
-
+    #print(listlength)    
 # --------------------------------------------------
 if __name__ == "__main__":
     main()
