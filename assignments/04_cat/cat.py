@@ -6,7 +6,9 @@ Purpose: Python cat
 """
 
 import argparse
-
+import os
+import sys
+import io
 
 # --------------------------------------------------
 def get_args():
@@ -16,7 +18,7 @@ def get_args():
         description='Python cat',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('FILE',
+    parser.add_argument('file',
                         help='Input file(s)',
                         metavar='FILE',
                         nargs = "+",
@@ -28,26 +30,43 @@ def get_args():
                         help='Number the lines',
                         action='store_true')
 
-    return parser.parse_args()
+#---------------------------
+    args = parser.parse_args()
+    
+    filehandle = args.file
+    
+    if os.path.isfile(filehandle):
+        
+    else:
+        filehandle = io.StringIO(filehandle + '\n')
+
+    return args
+
+#OR
+
+    #args = parser.parse_args()
+
+    #if os.path.isfile(args.text):
+    #    args.text = open(args.text).read().rstrip()
+
+    #return args
 
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    out_fh = open(args.file, 'wt') if args.file else sys.stdout
+    for line in args.file:
+        out_fh.write(line.upper())
+    out_fh.close()
 
-    print(f'str_arg = "{str_arg}"')
+#OR
 
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
-
-
+    #args = get_args()
+    #out_fh = open(args.outfile, 'wt') if args.outfile else sys.stdout
+    #out_fh.write(args.text.upper() + '\n')
+    #out_fh.close()
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
