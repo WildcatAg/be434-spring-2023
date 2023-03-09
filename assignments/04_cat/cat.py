@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+    # write a for loop to go through each of the files
+    # from the command line
+
+    # count the number of lines per file
+
+    # if the boolean flag number is true print
+    # the line numbers, otherwise print the line only
 """
 Author : myles <myles@localhost>
 Date   : 2023-03-04
@@ -37,7 +44,7 @@ def get_args():
     
     if os.path.isfile(filehandle):
         
-    else:
+        else:
         filehandle = io.StringIO(filehandle + '\n')
 
     return args

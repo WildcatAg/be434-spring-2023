@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 # This class is derailing me hard 
+    # create a dictionary with the notes and matching phrases
+
+    # write a for loop to go through each "note" from the user 
+    # in args.solfege; 
+  
+    # make sure the "note" is in the dictionary
+    # and print expected phrase for each note
+
+    # or tell the user you don't know the note if it doesn't exist
 """
 Author : myles <myles@localhost>
 Date   : 2023-02-12
