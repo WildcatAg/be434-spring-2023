@@ -26,9 +26,10 @@ def get_args():
         description='Solfege',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
+    # you do indeed need the nargs="+", to say you want one or more
     parser.add_argument('text', 
                         metavar='str', 
-                        #nargs="+",
+                        nargs="+",
                         help='Solfege'
                         )
 
@@ -43,22 +44,42 @@ def main():
     text = args.text
     
     #create the dictionary - jump5 thing
-    songtable = {'Do':'Do, A deer, a female deer', 'Re':'Re, A drop of golden sun', 'Mi':'Mi, A name I call myself','Fa':'Fa, A long long way to run','Sol':'Sol, A needle pulling thread','La':'La, A note to follow sol','Ti':'Ti, A drink with jam and bread'}
+    #songtable = {'Do':'Do, A deer, a female deer', 'Re':'Re, A drop of golden sun', 'Mi':'Mi, A name I call myself','Fa':'Fa, A long long way to run','Sol':'Sol, A needle pulling thread','La':'La, A note to follow sol','Ti':'Ti, A drink with jam and bread'}
+
+    # the key should be the "note" and the value should be the "phrase"  
+    songtable = {
+        'Do': 'A deer, a female deer',
+        'Re': 'A drop of golden sun',
+        'Mi': 'A name I call myself',
+        'Fa': 'A long long way to run',
+        'Sol': 'A needle pulling thread',
+        'La': 'A note to follow sol',
+        'Ti': 'A drink with jam and bread',
+    }
+
     
     #create list to accept input
-    printtable = text.split() 
+    #text is already a list of user inputs from the command line, you don't need to split. 
+    #printtable = text.split() 
     
     #Create error text
-    errortext = 'I don\'t know "' + text + '"'
+    #errortext = 'I don\'t know "' + text + '"'
     
     #create output
-    printedtext = '' #songtable.get(text, errortext)
+    #printedtext = '' #songtable.get(text, errortext)
 
     #Loop 
     for str in args.text:
-        printedtext = songtable.get(text, errortext)
-  
-    print(printedtext)
+        # each time you are overwriting this variable, so it only works for one note, which is the last one
+        # printedtext = songtable.get(text, errortext)
+        # instead let's create this as we go
+        # first we need to see if the note exists
+        if str in songtable:
+            print(f'{str}, {songtable.get(str)}')
+        else:
+            print(f'I don\'t know "{str}"')
+
+    #print(printedtext)
 
         #print(printtable += printedtext + "\n")
         #print(printtable, "\n")
