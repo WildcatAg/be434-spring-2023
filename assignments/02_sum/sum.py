@@ -36,24 +36,36 @@ def main():
     args = get_args()
     
     # careful here, we always use lowercase for strings because upper can be a reserved words
+    # you don't need this because you are just iterating over args.number below.
     value = args.number
     
     # create a list for putting the numbers from the command line as strings
     listlength = len(value)
-    numlist = ''
-    numlista = ''
+#    numlist = ''
+#    numlista = ''
+    numlist = []
     # create a total
     total = 0
 
-    for value in args.number:
-        total += value
-        numlist += str(value)
-        numlista = ' + '.join(numlist)
+# FYI you are resetting the variable "value" here
+#    for value in args.number:
+#        print(value)
+#        total += value
+#        numlist += str(value)
+#        # each time you do this you are joining the numlist by each character, which is whiy it splits the "-".
+#        # try storing the value in a list instead, and then joining and printing that list below.
+#        numlista = ' + '.join(numlist)
 
+    for value in args.number:
+       numlist.append(str(value))
+       total += value 
+
+    
     if listlength == 1:
         print(str(value)+' = '+str(value))
     else:
-        print(str(numlista) +' = '+str(total))
+#        print(str(numlista) +' = '+str(total))
+        print('{} = {}'.format(' + '.join(numlist), total))
 
     #print(listlength)    
 # --------------------------------------------------
