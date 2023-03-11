@@ -8,7 +8,7 @@ Purpose: Rock the Casbah
 import argparse
 import sys
 import os
-
+#blows up at test 1
 
 # --------------------------------------------------
 def get_args():
@@ -54,7 +54,7 @@ def main():
     #If file, open for translate and print
     #If string, translate and print
     #if os.path.isfile(file_arg):
-        #open(file_arg)
+        #open(file_arg).read()
     
     #Loop 
     for SEQ in args.sequence:

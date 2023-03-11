@@ -56,6 +56,8 @@ def main():
 #        # try storing the value in a list instead, and then joining and printing that list below.
 #        numlista = ' + '.join(numlist)
 
+
+## This makes sense to me. Thank you. I also went back and forth above on the using quotes versus brackets for numlist variable. 
     for value in args.number:
        numlist.append(str(value))
        total += value 
@@ -66,6 +68,7 @@ def main():
     else:
 #        print(str(numlista) +' = '+str(total))
         print('{} = {}'.format(' + '.join(numlist), total))
+## I dont understand the brackets in this last line. 
 
     #print(listlength)    
 # --------------------------------------------------
