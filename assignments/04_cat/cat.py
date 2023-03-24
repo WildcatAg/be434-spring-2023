@@ -36,7 +36,7 @@ def get_args():
     args = parser.parse_args()
     #for x in args.file:
     # if os.path.isfile(args.file):
-    #x = open(args.file)
+    #x = open(args.file,'rt')
     #x.read()
 
     return args ## keep
@@ -45,11 +45,24 @@ def main():
 
     args = get_args() ## keep 
     
+
+    
+    
+    
+    #x = open(args.file).rstrip()
+    #print(x.read)
+    #testfile4 = open(x).rstrip()
+    #testfile3 = args.x.read()
+    #testfile2 = open(args.x).read()
     #testfile1 = open(args.file).read()
     testfile = open(args.file, 'rt')
     testfile.read()
     print(testfile)
-    print(testfile1)
+    #print(testfile1)
+    #print(testfile2)
+    #print(testfile3)
+    #print(testfile4)
+    #print(testfile4.read())
     
 # --------------------------------------------------
 if __name__ == '__main__':
