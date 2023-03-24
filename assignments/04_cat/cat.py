@@ -34,16 +34,22 @@ def get_args():
 
 #---------------------------
     args = parser.parse_args()
- 
+    #for x in args.file:
+    # if os.path.isfile(args.file):
+    #x = open(args.file)
+    #x.read()
+
     return args ## keep
 
 def main():
 
     args = get_args() ## keep 
-
-    testfile = open(args.file)
+    
+    #testfile1 = open(args.file).read()
+    testfile = open(args.file, 'rt')
     testfile.read()
     print(testfile)
+    print(testfile1)
     
 # --------------------------------------------------
 if __name__ == '__main__':
