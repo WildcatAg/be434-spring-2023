@@ -36,18 +36,26 @@ def get_args():
     args = parser.parse_args()
     #for x in args.file:
     # if os.path.isfile(args.file):
+    #open(args.file)
+    #open('args.file')
+    #open("args.file")
+    #print(args.file.read, 'rt')
+    #print(open(args.file).read())
+    print("anything...")
+    #x = open("args.file")
+    #x = open('args.file')
+    #x = open(args.file, 'rt').read()
+    #x = open(args.file).read()
+    #x = open(args.file)
     #x = open(args.file,'rt')
     #x.read()
+    #print(x)
 
     return args ## keep
 
 def main():
 
     args = get_args() ## keep 
-    
-
-    
-    
     
     #x = open(args.file).rstrip()
     #print(x.read)
@@ -59,11 +67,14 @@ def main():
     #testfile.read()
     #print(testfile)
     #print(testfile1)
+    #print(testfile1.read())
     #print(testfile2)
+    #print(testfile2.read())
     #print(testfile3)
+    #print(testfile3.read())
     #print(testfile4)
     #print(testfile4.read())
-    
+    print("anything...")
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
