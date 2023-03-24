@@ -41,7 +41,7 @@ def get_args():
     #open("args.file")
     #print(args.file.read, 'rt')
     #print(open(args.file).read())
-    print("anything...")
+    print("anything....")
     #x = open("args.file")
     #x = open('args.file')
     #x = open(args.file, 'rt').read()
