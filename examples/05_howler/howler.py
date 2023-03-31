@@ -40,7 +40,6 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-<<<<<<< HEAD
     
     if args.outfile:
         print(args.text.upper(), file=open(args.outfile, 'wt'))
