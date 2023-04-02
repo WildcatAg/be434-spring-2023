@@ -45,6 +45,7 @@ def get_args():
                         help='Value for filter',
                         metavar='val',
                         type=str,
+                        required=True,
                         default=None)
     
     
@@ -60,8 +61,7 @@ def get_args():
                         '--outfile',
                         help='Output filename',
                         metavar='OUTFILE',
-                        type=argparse.FileType('rt'),
-                        required=True,
+                        type=argparse.FileType('wt'),
                         default="out.csv")
 
     parser.add_argument('-d',
@@ -76,6 +76,13 @@ def get_args():
 ## check for file validity w parser error
 ## if args.XYZ -is something bad-:
         ##parser.error(f'BLAH BLAH "{args.XYZ}" blah blah')
+
+##Bad column
+    ##if its passed
+    ## check args.col is not in args.file
+    #if args.col not in args.file.rstrip().split():
+    if args.col not in args.file:
+            parser.error(f'--col "{args.col}" not a valid column!')
 
     return args
 
