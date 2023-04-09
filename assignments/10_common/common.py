@@ -11,7 +11,7 @@ import argparse
 #import emoji
 import io
 #import random
-#import re
+import re
 #import string
 import sys
 #from pprint import pprint
@@ -69,33 +69,48 @@ def main():
     comp_set2 = set() #comparative set 2
     compoutfile = set() #file to write values to
     
-    #open each file, read the line, split to words, assign to set1
+    #open each file, read the line, split to words to list, 
+    # assign list to set
     
     for fh1 in args.file1:
         for line1 in fh1:
             for word1 in line1.split():
+            #for word1 in line1.splitlines().split()
+            #for word1 in line1.split(re.sub('[^a-zA-Z]', '', word1)):
                 comp_set1.add(word1)
-    
+                #comp_set1 = comp_set1.add(word1) --NO
+                    
     #open each file, read the line, split to words, assign to set2
     for fh2 in args.file2:
         for line2 in fh2:        
             for word2 in line2.split():
                 comp_set2.add(word2)
-  
+                #comp_set2 = comp_set2.add(word2) --NO
+            #for word2 in line2.split(re.sub('[^a-zA-Z]', '', word2)):
+            #   #re.sub('[^a-zA-Z]', '', word2)
     #compare sets and write commons to a outfile
+    
     compoutfile = comp_set1.intersection(comp_set2)
 
-    #if outfile flag is true, send to file name, else stdout
-    if args.outfile == True:
-        args.outfile = compoutfile
-        print(compoutfile)
+    #if outfile flag is true, send to file named, else stdout
+    #if args.outfile:
+        #args.outfile = compoutfile.write()
+    
+    print(compoutfile)
+    #print(comp_set1)
+    #print(comp_set2)
     
 
     #If the "-o|--outfile" option is provided, 
     # then the program should print the words to the 
     # provided output file and nothing to STDOUT:
 
+#-------
+#def clean(word1):
+    #"""Remove non-word characters from word"""
 
+    #return re.sub('[^a-zA-Z]', '', word1)
+#-------
 
 # --------------------------------------------------
 if __name__ == '__main__':
