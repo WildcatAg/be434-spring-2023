@@ -5,10 +5,21 @@ Date   : 2023-03-04
 Purpose: Translate DNA/RNA to proteins
 """
 
+#/bin/import_list.txt
 import argparse
-#import os
-#import io
-#import pprint
+#import csv
+#import emoji
+import io
+#import random
+import os
+#import re
+#import string
+import sys
+#from pprint import pprint
+#from pydash import flatten
+#from tabulate import tabulate
+#from typing import List, NamedTuple, Optional
+#from typing import List, Optional, TypedDict
 ### Still blows up at 60%
 
 # --------------------------------------------------

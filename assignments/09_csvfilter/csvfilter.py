@@ -11,13 +11,20 @@ Purpose: Filter delimited records
 # by commas and tabs, so you will need to use the --delimiter 
 # option to parse them.
 
-
+#/bin/import_list.txt
 import argparse
 #import csv
-from pprint import pprint
-#import re
-#import sys
+#import emoji
+import io
 #import random
+#import os
+import re
+#import string
+import sys
+from pprint import pprint
+#from pydash import flatten
+#from typing import List, NamedTuple, Optional
+#from typing import List, Optional, TypedDict
 
 from tabulate import tabulate
 #XYZ = [ ... ]#list of tuples

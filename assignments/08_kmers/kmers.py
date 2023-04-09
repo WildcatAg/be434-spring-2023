@@ -8,8 +8,21 @@ Purpose: Find common kmers
 # two readable text files and an optional -k|--kmer argument 
 # that accepts an integer value greater than 0 and which defaults
 # to 3.
-import argparse
 
+#/bin/import_list.txt
+import argparse
+#import csv
+#import emoji
+import io
+#import random
+import re
+#import string
+import sys
+#from pprint import pprint
+#from pydash import flatten
+#from tabulate import tabulate
+#from typing import List, NamedTuple, Optional
+#from typing import List, Optional, TypedDict
 
 # --------------------------------------------------
 def get_args():

@@ -5,12 +5,21 @@ Date   : 2023-03-19
 Purpose: Create synthetic sequences
 """
 
+#/bin/import_list.txt
 import argparse
-import re
+#import csv
+#import emoji
+import io
 import os
 import random
+import re
+#import string
 import sys
-
+#from pprint import pprint
+#from pydash import flatten
+#from tabulate import tabulate
+#from typing import List, NamedTuple, Optional
+#from typing import List, Optional, TypedDict
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""

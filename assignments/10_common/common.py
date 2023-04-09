@@ -10,6 +10,7 @@ import argparse
 #import csv
 #import emoji
 import io
+#import os
 #import random
 import re
 #import string
@@ -92,18 +93,19 @@ def main():
     
     compoutfile = comp_set1.intersection(comp_set2)
 
-    #if outfile flag is true, send to file named, else stdout
-    #if args.outfile:
-        #args.outfile = compoutfile.write()
+       #If the "-o|--outfile" option is provided, 
+    # then the program should print the words to the 
+    # provided output file and nothing to STDOUT: 
+    # #if outfile flag is true, write contents to file named, else stdout
+    if args.outfile:
+        args.outfile = compoutfile.write()
     
     print(compoutfile)
     #print(comp_set1)
     #print(comp_set2)
     
 
-    #If the "-o|--outfile" option is provided, 
-    # then the program should print the words to the 
-    # provided output file and nothing to STDOUT:
+
 
 #-------
 #def clean(word1):
