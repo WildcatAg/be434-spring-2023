@@ -1,3 +1,4 @@
+#import_list.txt
 import argparse
 #import csv
 #import emoji

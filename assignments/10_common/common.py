@@ -2,69 +2,99 @@
 """
 Author : myles <myles@localhost>
 Date   : 2023-03-04
-Purpose: Rock the Casbah
+Purpose: Find common words
 """
 
+#/bin/import_list.txt
 import argparse
-
+#import csv
+#import emoji
+import io
+#import random
+#import re
+#import string
+import sys
+#from pprint import pprint
+#from pydash import flatten
+#from tabulate import tabulate
+#from typing import List, NamedTuple, Optional
+#from typing import List, Optional, TypedDict
 
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Find common words',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
-                        metavar='str',
-                        help='A positional argument')
-
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
+    parser.add_argument('file1',
+                    help='Input file 1',
+                    metavar='FILE1',
+                    type=argparse.FileType('rt'),
+                    default=None)   
+    
+    parser.add_argument('file2',
+                    help='Input file 2',
+                    metavar='FILE2',
+                    type=argparse.FileType('rt'),
+                    default=None)   
 
     parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
+                    '--outfile',
+                    help='Output file',
+                    metavar='FILE',
+                    type = argparse.FileType('wt'),
+                    default= sys.stdout)
 
-    return parser.parse_args()
+    args = parser.parse_args()
 
+    #The program should halt with an error message 
+    # if either of the positional arguments are not 
+    # the names of valid, readable files
+
+
+    return args
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+    #The program should find sequences are shared
+    #The program should find common words
+    
+    comp_set1 = set() #comparative set 1
+    comp_set2 = set() #comparative set 2
+    compoutfile = set() #file to write values to
+    
+    #open each file, read the line, split to words, assign to set1
+    
+    for fh1 in args.file1:
+        for line1 in fh1:
+            for word1 in line1.split():
+                comp_set1.add(word1)
+    
+    #open each file, read the line, split to words, assign to set2
+    for fh2 in args.file2:
+        for line2 in fh2:        
+            for word2 in line2.split():
+                comp_set2.add(word2)
+  
+    #compare sets and write commons to a outfile
+    compoutfile = comp_set1.intersection(comp_set2)
+
+    #if outfile flag is true, send to file name, else stdout
+    if args.outfile == True:
+        args.outfile = compoutfile
+        print(compoutfile)
+    
+
+    #If the "-o|--outfile" option is provided, 
+    # then the program should print the words to the 
+    # provided output file and nothing to STDOUT:
+
 
 
 # --------------------------------------------------
