@@ -12,7 +12,7 @@ import argparse
 #import io
 #import os
 #import random
-import re
+#import re
 #import string
 #import sys
 #from pprint import pprint
@@ -47,8 +47,8 @@ def main():
     # ou can use str.splitlines() to process each sequence:
 
     for seq in args.sequence.splitlines():
-        #print(seq)    
-        print(rle(seq)) #**OR**
+        #print(seq)    ##30% comment in at minimum
+        print(rle(seq)) #**comment out to reach 30%**
     #print(args)
     
 
@@ -65,27 +65,27 @@ def rle(seq):
             ##else print char
     ##create an empty list - lists are ordered - that accepts the replaced values
     ##old_list = (seq)
-    new_list = []
+    new_list = ()
     index_char = 1 #for indexing occurence of value
     #for letter in seq    
         #new_list.append()
     
     ##count times the character shows up and then display that if flag is true
+    ##else append list with character in question
     for index,character in list(enumerate(seq[:-1])):
         if character == seq[index+1]:
-            index_char +=1
-            new_list.append(character+'index_char')
+            index_char =+ 1
+            new_list.append(character+index_char)
         else:
-            print(character)
+            new_list.append(character)
     
+    print(new_list)
+
     ##placeholder = (seq) or [seq]?
         ##duplicate_vals = placeholder.count()
     
     ##print (newlist)
     
-
-
-
     #return ''
     pass
 # --------------------------------------------------
