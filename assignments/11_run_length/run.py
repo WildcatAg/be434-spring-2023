@@ -71,7 +71,7 @@ def rle(seq):
         #new_list.append()
     
     ##count times the character shows up and then display that if flag is true
-    for index,character in enumerate(seq[:-1]):
+    for index,character in list(enumerate(seq[:-1])):
         if character == seq[index+1]:
             index_char +=1
             new_list.append(character+'index_char')
