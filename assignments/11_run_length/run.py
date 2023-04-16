@@ -12,7 +12,7 @@ import argparse
 #import io
 #import os
 #import random
-#import re
+import re
 #import string
 #import sys
 #from pprint import pprint
@@ -34,7 +34,14 @@ def get_args():
                         metavar='str',
                         help='DNA text or file')
 
-    return parser.parse_args()
+    args = parser.parse_args()
+    
+    ##string validation -- check whether input is AaCcTtGg etc. or give parser error
+    if re.findall('[^AaCcGgTt]',args.sequence):
+        parser.error(f'{args.sequence} is not a valid sequence.')
+    
+    return args
+    
 # --------------------------------------------------
 # --------------------------------------------------
 def main():
@@ -48,7 +55,7 @@ def main():
 
     for seq in args.sequence.splitlines():
         #print(seq)    ##30% comment in at minimum
-        print(rle(seq)) #**comment out to reach 30%**
+        print(rle(seq)) #**comment out to reach 30%** Add new line for each print?
     #print(args)
     
 
@@ -66,18 +73,34 @@ def rle(seq):
     ##create an empty list - lists are ordered - that accepts the replaced values
     ##old_list = (seq)
     new_list = ()
+    new_char = str()
     index_char = 1 #for indexing occurence of value
     #for letter in seq    
         #new_list.append()
+    ##Regular expression attempts
+    ##
+    ##for index,character in list(enumerate(seq[:-1])):
+    #for index,character in enumerate(seq[:-1]):
+    #new_list = re.search(character, seq)
+
+    #x = re.sub(character, index_char, seq, *)
+    #print(x)
     
     ##count times the character shows up and then display that if flag is true
     ##else append list with character in question
-    for index,character in list(enumerate(seq[:-1])):
-        if character == seq[index+1]:
-            index_char =+ 1
-            new_list.append(character+index_char)
+    ##for index,character in list(enumerate(seq[:-1])):
+    #for index,character in enumerate(seq[:-1]):
+    for index,character in enumerate(seq):
+        #if character == seq[index+1, character]: ##if character is equal to character at index point +1
+        if (character[index] == character[index + 1]):
+            index_char =+ 1 #add 1 to index char, starting from 1 for single occurence
+            new_char = character+str(index_char)
+            #new_list.append(character+str(index_char))
+            new_list.append(new_char)
+            return new_list
         else:
             new_list.append(character)
+            return new_list
     
     print(new_list)
 
@@ -87,6 +110,11 @@ def rle(seq):
     ##print (newlist)
     
     #return ''
+    
+   
+    
+    
+    
     pass
 # --------------------------------------------------
 # --------------------------------------------------
