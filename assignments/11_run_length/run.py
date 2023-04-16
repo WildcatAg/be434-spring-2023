@@ -90,17 +90,23 @@ def rle(seq):
     ##else append list with character in question
     ##for index,character in list(enumerate(seq[:-1])):
     #for index,character in enumerate(seq[:-1]):
+    
+    
+    
     for index,character in enumerate(seq):
         #if character == seq[index+1, character]: ##if character is equal to character at index point +1
-        if (character[index] == character[index + 1]):
-            index_char =+ 1 #add 1 to index char, starting from 1 for single occurence
+        indexp = index + 1 #the next character over
+        if character[index] == character[indexp]:
+            index_char+=1 #add 1 to index char, starting from 1 for single occurence
             new_char = character+str(index_char)
             #new_list.append(character+str(index_char))
             new_list.append(new_char)
-            return new_list
+            print(new_list)
+            #return new_list
         else:
             new_list.append(character)
-            return new_list
+            #return new_list
+            print(new_list)
     
     print(new_list)
 
