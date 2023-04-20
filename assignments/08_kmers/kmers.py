@@ -11,6 +11,7 @@ Purpose: Find common kmers
 
 #/bin/import_list.txt
 import argparse
+import os
 #import csv
 #import emoji
 import io
@@ -46,15 +47,31 @@ def get_args():
                         metavar='int',
                         type=int,
                         default=3)
+    
+    args = parser.parse_args()
+    
+    if os.path.isfile(args.FILE1) == False:
+        parser.error(f'--col "{args.FILE1}" No such file or directory:')
+    else:
+        if os.path.isfile(args.FILE2) == False:
+            parser.error(f'--col "{args.FILE2}" No such file or directory:')
 
-    return parser.parse_args()
-
-
+    return args
+    
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
+    
+    
+    for fh1 in args.file:
+        for line1 in fh1:
+            for word1 in line1.split():
+                print(word1)
+                line_num += 1
+    
+    
     print (args)
 
 
