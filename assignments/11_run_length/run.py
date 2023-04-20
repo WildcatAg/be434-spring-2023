@@ -36,9 +36,7 @@ def get_args():
 
     args = parser.parse_args()
     
-    ##string validation -- check whether input is AaCcTtGg etc. or give parser error
-    if re.findall('[^AaCcGgTt]',args.sequence):
-        parser.error(f'{args.sequence} is not a valid sequence.')
+    
     
     return args
     
@@ -55,7 +53,8 @@ def main():
 
     for seq in args.sequence.splitlines():
         #print(seq)    ##30% comment in at minimum
-        print(rle(seq)) #**comment out to reach 30%** Add new line for each print?
+        #print(rle(seq)) #**comment out to reach 30%** Add new line for each print?
+        rle(seq)
     #print(args)
     
 
@@ -72,7 +71,7 @@ def rle(seq):
             ##else print char
     ##create an empty list - lists are ordered - that accepts the replaced values
     ##old_list = (seq)
-    new_list = ()
+    new_list = []
     new_char = str()
     index_char = 1 #for indexing occurence of value
     #for letter in seq    
@@ -96,20 +95,27 @@ def rle(seq):
     for index,character in enumerate(seq):
         #if character == seq[index+1, character]: ##if character is equal to character at index point +1
         indexp = index + 1 #the next character over
-        if character[index] == character[indexp]:
-            index_char+=1 #add 1 to index char, starting from 1 for single occurence
-            new_char = character+str(index_char)
-            #new_list.append(character+str(index_char))
-            new_list.append(new_char)
-            print(new_list)
-            #return new_list
-        else:
-            new_list.append(character)
-            #return new_list
-            print(new_list)
+        if indexp != len(seq):
+            if character == seq[indexp]:
+                index_char+=1 #add 1 to index char, starting from 1 for single occurence
+                #new_char = character+str(index_char)
+                #new_list.append(character+str(index_char))
+                #new_list.append(new_char)
+                #print(new_list)
+                #return new_list
+            else:
+                if index_char > 1:
+                    new_list.append(character+str(index_char))
+                else:
+                    new_list.append(character)
+                index_char=1
+                #return new_list
+                #print(new_list)
     
-    print(new_list)
+    print(''.join(new_list))
 
+##string validation -- check whether input is AaCcTtGg etc. or give parser error
+    #if re.findall('[^AaCcGgTt]',args.sequence):
     ##placeholder = (seq) or [seq]?
         ##duplicate_vals = placeholder.count()
     
@@ -121,7 +127,7 @@ def rle(seq):
     
     
     
-    pass
+
 # --------------------------------------------------
 # --------------------------------------------------
 if __name__ == '__main__':
