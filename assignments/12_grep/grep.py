@@ -9,7 +9,7 @@ Purpose: Python grep
 import argparse
 #import csv
 #import emoji
-#import io
+import io
 import os
 #import random
 import re
@@ -51,15 +51,20 @@ def get_args():
 
     args = parser.parse_args()
     
-    fh = re.search("txt\b", args.file)
+    #fh = re.search("txt\b", args.file)
     #fh = os.path.isfile(args.file)
-    patternhandle = str(args.pattern)
+    #patternhandle = str(args.pattern)
 
-    if patternhandle:
-        if not fh:
-        #if not args.file:
-        #if os.path.isfile(args.file) == False:
-            parser.error(f'--col "{args.file}" No such file or directory:')
+    if os.path.isfile(args.file) == False:
+        #parser.error(f"No such file or directory: '{sys.stdin}'")   
+        parser.error(f"No such file or directory: '{args.file}'")
+    
+    
+    #if patternhandle:
+    #    if not fh:
+    #    #if not args.file:
+    #    #if os.path.isfile(args.file) == False:
+    #        parser.error(f'--col "{args.file}" No such file or directory:')
 
     return args
 
