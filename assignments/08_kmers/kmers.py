@@ -33,12 +33,14 @@ def get_args():
         description='Find common kmers',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter) 
     
-    parser.add_argument('FILE1',
+    parser.add_argument('filea',
                         metavar='FILE1',
+                        type=str,
                         help='Input file 1')
 
-    parser.add_argument('FILE2',
+    parser.add_argument('fileb',
                         metavar='FILE2',
+                        type=str,
                         help='Input file 2')
 
     parser.add_argument('-k',
@@ -50,12 +52,17 @@ def get_args():
     
     args = parser.parse_args()
     
-    if os.path.isfile(args.FILE1) == False:
-        parser.error(f'--col "{args.FILE1}" No such file or directory:')
-    else:
-        if os.path.isfile(args.FILE2) == False:
-            parser.error(f'--col "{args.FILE2}" No such file or directory:')
+    if os.path.isfile(args.filea) == False:
+        parser.error(f"No such file or directory: '{args.filea}'")
 
+    if os.path.isfile(args.fileb) == False:
+        parser.error(f"No such file or directory: '{args.fileb}'")
+    
+    # if os.path.isfile(args.FILE1) == False:
+    #     parser.error(f'--col "{args.FILE1}" No such file or directory:')
+    # else:
+    #     if os.path.isfile(args.FILE2) == False:
+    #         parser.error(f'--col "{args.FILE2}" No such file or directory:')
     return args
     
 # --------------------------------------------------
@@ -65,11 +72,11 @@ def main():
     args = get_args()
     
     
-    for fh1 in args.file:
-        for line1 in fh1:
-            for word1 in line1.split():
-                print(word1)
-                line_num += 1
+    # for fh1 in args.file:
+    #     for line1 in fh1:
+    #         for word1 in line1.split():
+    #             print(word1)
+    #             line_num += 1
     
     
     print (args)
