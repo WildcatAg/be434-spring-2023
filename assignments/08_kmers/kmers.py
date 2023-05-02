@@ -58,6 +58,12 @@ def get_args():
     if os.path.isfile(args.fileb) == False:
         parser.error(f"No such file or directory: '{args.fileb}'")
     
+    if args.kmer != int:
+        parser.error(f"invalid int value: '{args.kmer}'")
+
+    if args.kmer <= 0:
+        parser.error(f'--kmer "{args.kmer}" must be > 0')
+
     # if os.path.isfile(args.FILE1) == False:
     #     parser.error(f'--col "{args.FILE1}" No such file or directory:')
     # else:

@@ -13,7 +13,7 @@ import io
 import os
 #import random
 #import re
-#import string
+import string
 import sys
 #from pprint import pprint
 #from pydash import flatten
@@ -56,30 +56,77 @@ def get_args():
     
     args = parser.parse_args()
     
-    #fh = args.file
-    #if os.path.isfile(file) == False:
+    ##Check the file
     if os.path.isfile(args.file) == False:
         #parser.error(f"No such file or directory: '{sys.stdin}'")   
         parser.error(f"No such file or directory: '{args.file}'")
+    
     return args
 
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
-
+    
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    fh = args.file
+    shift = args.seed
+    
+    print (encrypt(fh, shift))
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+#---------------------------------------------------
+def encrypt(fh,shift):
+
+    lower = range(97,123) 
+    upper = range(65,91)
+    
+    #Need to be enumerated?
+    seedsplit = str(shift).split()
+    
+    encryption = ""
+    #From the fh for each split line
+    for tempvar in fh:
+        #for each 
+        for letter in tempvar.split():
+    # for letter in range(len(fh)):
+            tempvar = fh[shift]
+            tempvar = letter
+        # Encrypt uppercase characters
+        if (letter.isupper()):
+        #if (tempvar.isupper()):
+            encryption += chr((ord(letter) + shift-65) % 26 + 65)
+ 
+        # Encrypt lowercase characters
+        else:
+            encryption += chr((ord(letter) + shift - 97) % 26 + 97)
+ 
+    return encryption
+
+#---------------------------------------------------
+
+def translateMessage(message, key, mode):
+    args = get_args()
+    translated = ''
+    alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    charsA = "SOMETHING"
+    charsB = args.seed
+    
+    for symbol in message:
+        if symbol.upper() in charsA:
+# Encrypt/decrypt the symbol:
+            symIndex = charsA.find(symbol.upper())
+            if symbol.isupper():
+                translated += charsB[symIndex].upper()
+            else:
+                translated += charsB[symIndex].lower()
+        else:# The symbol is not in LETTERS, just add it unchanged.
+            translated += symbol
+    return translated
+
+# --------------------------------------------------
+if __name__ == '__main__':
+    main()
+
 
 
 # --------------------------------------------------

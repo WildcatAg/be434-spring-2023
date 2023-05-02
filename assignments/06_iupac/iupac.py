@@ -60,24 +60,40 @@ def main():
     sequence2 = sequence1.split()
     #sequence1 = args.sequence.split()
     
+    if args.outfile: #if flag, write each line
+        args.outfile.write(f'"{sequence1}" {sequence2}''\n')
+        print(args.outfile)
+    else:
+        print(f'"{sequence1}" {sequence2}')
 
-    #Check if input is a file or string
-    #If file, open for translate and print
-    #If string, translate and print
-    #if os.path.isfile(file_arg):
-        #open(file_arg).read()
-    
     #Loop 
     for SEQ in args.sequence:
+        if sequence1 in trans [Loc X]:
+            sequence2 = 
+
         printedtext = trans.get(sequence1, sequence1)
-        #printedtext = trans.get(sequence1, errortext)
         
-    print(printedtext)
+        #printedtext = trans.get(sequence1, errortext)
+        print(f'"{args.sequence}" {printedtext}')
+        #print(printedtext)
 
     #print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
     #print(f'positional = "{pos_arg}"')
 
+    for line in args.sequence:  # works
+        tempvar = line.rstrip().split() 
 
+    for sequence1 in [trans[i : i + k] for i in range(0, len(seq), k)]:
+        if trans.get(sequence1.upper()) is None:
+            args.outfile.append(sequence1)
+            #print(f'"{args.sequence}" {printedtext}')
+        else:
+            args.outfile.append(sequence2)
+            #print(f'"{args.sequence}" [{printedtext}]')
+    args.outfile.write("\n")
+    
+    print(printedtext)
+    #print(f'"{args.sequence}" {printedtext}')
 
 # --------------------------------------------------
 if __name__ == '__main__':

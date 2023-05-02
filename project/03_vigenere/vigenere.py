@@ -69,17 +69,35 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
+    fh = args.file
+    shift = args.keyword
+    
+    print(encrypt(fh, shift))
+# --------------------------------------------------
 
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
+#---------------------------------------------------
+
+def encrypt(fh,shift):
+    
+    encryption = ""
+    for tempvar in fh:
+        for letter in tempvar.split():
+    # for letter in range(len(fh)):
+            ##Change keyword to numbers and then pass through
+            tempvar = fh[shift]
+            tempvar = letter
+        # Encrypt uppercase characters
+        if (letter.isupper()):
+        #if (tempvar.isupper()):
+            encryption += chr((ord(letter) + shift-65) % 26 + 65)
+ 
+        # Encrypt lowercase characters
+        else:
+            encryption += chr((ord(letter) + shift - 97) % 26 + 97)
+ 
+    return encryption
+
+# --------------------------------------------------
 
 
 # --------------------------------------------------
