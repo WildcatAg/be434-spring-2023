@@ -11,7 +11,7 @@ import argparse
 #import emoji
 import io
 import os
-#import random
+import random
 #import re
 import string
 import sys
@@ -55,10 +55,11 @@ def get_args():
                         default= sys.stdout)
     
     args = parser.parse_args()
-    
-    ##Check the file
+
+    # fh = args.file
+    # if os.path.isfile(file) == False:
     if os.path.isfile(args.file) == False:
-        #parser.error(f"No such file or directory: '{sys.stdin}'")   
+        # parser.error(f"No such file or directory: '{sys.stdin}'")
         parser.error(f"No such file or directory: '{args.file}'")
     
     return args
@@ -66,69 +67,83 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
-    
+    # """Make a jazz noise here"""
     args = get_args()
-    fh = args.file
-    shift = args.seed
-    
-    print (encrypt(fh, shift))
+    fh = open(args.file, "r")
+    fho = args.outfile
+    #seeds = args.seed
+    random.seed(args.seed) #repeatable random
+    #print(args.seed)
+    decode = args.decode
 
-#---------------------------------------------------
-def encrypt(fh,shift):
+    encrypt(fh, fho, decode)
 
-    lower = range(97,123) 
-    upper = range(65,91)
-    
-    #Need to be enumerated?
-    seedsplit = str(shift).split()
-    
-    encryption = ""
-    #From the fh for each split line
-    for tempvar in fh:
-        #for each 
-        for letter in tempvar.split():
-    # for letter in range(len(fh)):
-            tempvar = fh[shift]
-            tempvar = letter
-        # Encrypt uppercase characters
-        if (letter.isupper()):
-        #if (tempvar.isupper()):
-            encryption += chr((ord(letter) + shift-65) % 26 + 65)
- 
-        # Encrypt lowercase characters
-        else:
-            encryption += chr((ord(letter) + shift - 97) % 26 + 97)
- 
-    return encryption
 
-#---------------------------------------------------
+def encrypt(fh, fho, decode):
 
-def translateMessage(message, key, mode):
-    args = get_args()
-    translated = ''
     alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    charsA = "SOMETHING"
-    charsB = args.seed
-    
-    for symbol in message:
-        if symbol.upper() in charsA:
-# Encrypt/decrypt the symbol:
-            symIndex = charsA.find(symbol.upper())
-            if symbol.isupper():
-                translated += charsB[symIndex].upper()
+    beta = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    beta = random.sample(alpha, 26)
+    #print(alpha)
+
+    #random.shuffle(beta)
+    #print(beta)
+
+    for line in fh.readlines():  # reading in line ###.read() also works
+        # print(line)
+        for char in line.upper():  # split to line to words
+            # print(tempvar)
+            # tempasc = chr(tempvar)
+            # for char in tempvar
+            if char in alpha:
+                # print(char, alpha.find(char))
+                if decode is False:
+                    tempvar1 = alpha.find(char)
+                    fho.write(beta[tempvar1])
+                    #print(char, tempvar1)
+                else:
+                    tempvar1 = beta.index(char)
+                    fho.write(alpha[tempvar1])
             else:
-                translated += charsB[symIndex].lower()
-        else:# The symbol is not in LETTERS, just add it unchanged.
-            translated += symbol
-    return translated
-
-# --------------------------------------------------
-if __name__ == '__main__':
-    main()
+                fho.write(char)
+        # fho.write(" ")
+    # fho.write('\n')
 
 
+#     fh = args.file
+#     shift = args.number
 
-# --------------------------------------------------
-if __name__ == '__main__':
+#     print(encrypt(fh, shift))
+#     # if args.outfile:
+#     #    args.outfile = encrypt(fh, shift).write()
+#     # print(args.outfile)
+#     # else:
+#     #    print ("Text  : " + fh)
+#     #    print ("Shift : " + str(shift))
+#     #    print ("Cipher: " + encrypt(fh,shift))
+
+# # # --------------------------------------------------
+# # # #---------------------------------------------------
+# # def encrypt(fh,shift):
+# # #% returns remainder
+# #     encryption = ""
+# #     for tempvar in fh:
+# #         for letter in tempvar.split():
+# #     # for letter in range(len(fh)):
+# #             tempvar = fh[shift]
+# #             tempvar = letter
+# #         # Encrypt uppercase characters
+# #         # A - Z = 65 - 90
+# #         # a - z = 97 - 122
+# #         if (letter.isupper()):
+# #         #if (tempvar.isupper()):
+# #             encryption += chr((ord(letter) + shift+65) % 26 + 65)
+# #         # Encrypt lowercase characters
+# #         else:
+# #             encryption += chr((ord(letter) + shift + 97) % 26 + 97)
+# #     return encryption
+# # # #check the above function
+# # #---------------------------------------------------
+# # # # --------------------------------------------------
+if __name__ == "__main__":
     main()

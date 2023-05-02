@@ -103,3 +103,17 @@ def encrypt(fh,shift):
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
+
+
+
+    #modulo 
+    for each line 
+    countervar = 0 #starting position of index for each line at line, reinitialize counter at 0 
+    incrememnt counter at capital letters only, not space or symbols
+    countervar = mod% len(cipher key) #position in the cipher key to use
+    
+    counter for calputal letters
+    lookups in alpha 
+    deceode is subtraction , coding is addition (modulus)
+
+
