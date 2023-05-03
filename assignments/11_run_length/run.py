@@ -54,6 +54,7 @@ def rle(sequence):
 
     #if not sequence: return ''
     for char in sequence:
+    #for char in args.sequence: NO
         # If the prev and current characters don't match...
         if char != prev_char:
             # ...then add the count and character to our encoding
