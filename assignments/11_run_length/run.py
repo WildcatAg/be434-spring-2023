@@ -44,29 +44,32 @@ def main():
     """Make a jazz noise here"""
     args = get_args()
     sequence = args.sequence
-    print(rle(sequence))
+    printedtext = (rle(sequence))
+    print(printedtext)
 # --------------------------------------------------
-def rle_encode(sequence):
+def rle(sequence):
     encoding = ''
     prev_char = ''
     index = 1 #start at 1
 
     #if not sequence: return ''
-    
     for char in sequence:
         # If the prev and current characters don't match...
         if char != prev_char:
             # ...then add the count and character to our encoding
             if prev_char:
-                encoding += str(count) + prev_char
+                #encoding +=  prev_char + str(count)
+                encoding +=  prev_char
             count = 1
             prev_char = char
         else:
-            # Or increment our counter if the characters do match
+            # Index increases if the characters do match and repeats
             count += 1
-    else:
-        # Finish off the encoding
-        encoding += str(count) + prev_char
+    else: #if count = 1, just return char, else return count
+        if count == 1:
+            encoding += prev_char
+        else:
+            encoding += prev_char + str(count)
         return encoding
 # --------------------------------------------------
 if __name__ == '__main__':
