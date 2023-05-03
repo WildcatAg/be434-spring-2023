@@ -10,9 +10,9 @@ import argparse
 #import csv
 #import emoji
 #import io
-#import os
+import os
 #import random
-import re
+#import re
 #import string
 #import sys
 #from pprint import pprint
@@ -43,15 +43,25 @@ def get_args():
 def main():
     """Make a jazz noise here"""
     args = get_args()
-    sequence = args.sequence
-    printedtext = (rle(sequence))
-    print(printedtext)
+    #if string is a file, open first as fh and read it as variable passed in. 
+    if os.path.isfile(args.sequence) == True:
+        fh = open(args.sequence, "r")
+        sequence = fh.read()
+        printedtext = (rle(sequence))
+        print(printedtext)
+    else: #if not, just read as string
+        sequence = args.sequence
+        printedtext = (rle(sequence))
+    #printedtext = (rle(sequence))
+        print(printedtext)
+    
+
 # --------------------------------------------------
 def rle(sequence):
     encoding = ''
     prev_char = ''
     index = 1 #start at 1
-
+    
     #if not sequence: return ''
     for char in sequence:
     #for char in args.sequence: NO
@@ -59,8 +69,10 @@ def rle(sequence):
         if char != prev_char:
             # ...then add the count and character to our encoding
             if prev_char:
-                #encoding +=  prev_char + str(count)
-                encoding +=  prev_char
+                if count == 1:
+                    encoding += prev_char
+                else:
+                    encoding +=  prev_char + str(count)
             count = 1
             prev_char = char
         else:
