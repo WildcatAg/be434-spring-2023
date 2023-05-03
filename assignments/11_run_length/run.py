@@ -36,8 +36,6 @@ def get_args():
 
     args = parser.parse_args()
     
-    
-    
     return args
     
 # --------------------------------------------------
@@ -45,90 +43,31 @@ def get_args():
 def main():
     """Make a jazz noise here"""
     args = get_args()
-
-    ## If input is string and not file then RLE on the input sequence
-    ## If file, open the file w for loop to strip lines
-    #print the encoded sequences, file containing multiple sequences, 
-    # ou can use str.splitlines() to process each sequence:
-
-    for seq in args.sequence.splitlines():
-        #print(seq)    ##30% comment in at minimum
-        #print(rle(seq)) #**comment out to reach 30%** Add new line for each print?
-        rle(seq)
-    #print(args)
-    
-
+    sequence = args.sequence
+    print(rle(sequence))
 # --------------------------------------------------
-# --------------------------------------------------
-#consider writing a function in your run.py program called rle()
-#that will accept a single sequence and return the encoded version
+def rle_encode(sequence):
+    encoding = ''
+    prev_char = ''
+    index = 1 #start at 1
 
-def rle(seq):
-    """ Create RLE """
+    #if not sequence: return ''
     
-    ##From seq, for loop to find common characters in each line char by char in order
-        ##if intersection, count number of char and print ''char' + 'count''
-            ##else print char
-    ##create an empty list - lists are ordered - that accepts the replaced values
-    ##old_list = (seq)
-    new_list = []
-    new_char = str()
-    index_char = 1 #for indexing occurence of value
-    #for letter in seq    
-        #new_list.append()
-    ##Regular expression attempts
-    ##
-    ##for index,character in list(enumerate(seq[:-1])):
-    #for index,character in enumerate(seq[:-1]):
-    #new_list = re.search(character, seq)
-
-    #x = re.sub(character, index_char, seq, *)
-    #print(x)
-    
-    ##count times the character shows up and then display that if flag is true
-    ##else append list with character in question
-    ##for index,character in list(enumerate(seq[:-1])):
-    #for index,character in enumerate(seq[:-1]):
-    
-    
-    
-    for index,character in enumerate(seq):
-        #if character == seq[index+1, character]: ##if character is equal to character at index point +1
-        indexp = index + 1 #the next character over
-        if indexp != len(seq):
-            if character == seq[indexp]:
-                index_char+=1 #add 1 to index char, starting from 1 for single occurence
-                #new_char = character+str(index_char)
-                #new_list.append(character+str(index_char))
-                #new_list.append(new_char)
-                #print(new_list)
-                #return new_list
-            else:
-                if index_char > 1:
-                    new_list.append(character+str(index_char))
-                else:
-                    new_list.append(character)
-                index_char=1
-                #return new_list
-                #print(new_list)
-    
-    print(''.join(new_list))
-
-##string validation -- check whether input is AaCcTtGg etc. or give parser error
-    #if re.findall('[^AaCcGgTt]',args.sequence):
-    ##placeholder = (seq) or [seq]?
-        ##duplicate_vals = placeholder.count()
-    
-    ##print (newlist)
-    
-    #return ''
-    
-   
-    
-    
-    
-
-# --------------------------------------------------
+    for char in sequence:
+        # If the prev and current characters don't match...
+        if char != prev_char:
+            # ...then add the count and character to our encoding
+            if prev_char:
+                encoding += str(count) + prev_char
+            count = 1
+            prev_char = char
+        else:
+            # Or increment our counter if the characters do match
+            count += 1
+    else:
+        # Finish off the encoding
+        encoding += str(count) + prev_char
+        return encoding
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
