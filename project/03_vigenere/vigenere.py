@@ -67,9 +67,25 @@ def encrypt(fh, shift, fho, decode):
     for line in fh.readlines():  # reading in line 
         #start = ord('A')
         for char in line: #break into characters
-            start = ord('A')
-            if char.isalpha() == False: #If its not a letter, reprint
+            if char.upper().isalpha() == True: #If its not a letter, reprint
+                if decode is False: #if decode flag is false
+                    for l, k in zip(line, cycle(shift)): #for each position in line and keyword
+                        start = ord('A')
+                        shiftpos = ord(k) - start 
+                        pos = start + (ord(l) - start + shiftpos) % 26
+                        cip.append(chr(pos))
+                        #fho.write((chr(pos)))
+                        #print(l,k)
+                    return ''.join([l for l in cip])
+                    
+                else: #decode
+                    shiftpos = ord(k) + start 
+                    pos = start - (ord(l) + start - shiftpos) % 26
+            else: #it is a letter    
+                print(char)
                 cip.append(char)
+                fho.write(char)
+                #fho.write(cip.append(char))
                 # if decode is False:
                 #     #start = ord('A')
                 #     chartemp=char 
@@ -77,19 +93,7 @@ def encrypt(fh, shift, fho, decode):
                 #     pos = start + (ord(l) - start + shiftpos) % 26
                 #     cip.append(chartemp) 
                 #return ''.join([l for l in cip])
-                return ''.join(char)
-            else: #it is a letter    
-                if decode is False: #if decode flag is false
-                    for l, k in zip(line, cycle(shift)): #for each position in line and keyword
-                        #sstart = ord('A')
-                        shiftpos = ord(k) - start 
-                        pos = start + (ord(l) - start + shiftpos) % 26
-                        cip.append(chr(pos))
-                    #print(l,k)
-                    return ''.join([l for l in cip])
-                #return ''.join(char)
-            
-            
+            return ''.join(char)
             # if char in alpha:
             #     if decode is False:
             #         tempvar1 = (alpha.find(char) + shift) % 26
@@ -98,108 +102,5 @@ def encrypt(fh, shift, fho, decode):
             #     fho.write(alpha[tempvar1])
             # else:
             #     fho.write(char)
-
 if __name__ == "__main__":
     main()
-
-#print(lines, textlen, keylen)
-    #print(fh) ERROR: #<_io.TextIOWrapper name='inputs/fox.txt' mode='r' encoding='UTF-8'>
-    #print(encrypt(fh, shift)) #calls the function
-# for char2 in keyword: #keyword
-# #print(keyword)
-# keyindex = keyword.find(char2)
-# #print(char2, keyindex)
-# for i in range(textlen)
-# for char1 in line: #text in from user
-# #print(line)
-# if char1.isalpha():
-#     textindex = line.find(char1)
-#     mathvar = textindex[i] + keyindex[i] % 26
-#     print(mathvar)#print(char1, textindex)
-# else:
-#     chartemp=char1
-#     textindex1 = textindex +1
-#     #print(chartemp, textindex1)
-#     mathvar = textindex % keyindex
-#     print(mathvar)
-    # mathvar = keyindex % textindex
-    # print(mathvar)
-    #                    len(key)):
-    #         key.append(key[i % len(key)])
-    # return("" . join(key))
-    
-
-    main()     
-
-
-
-
-
-
-        # for char in line.upper():  # split to line to words
-        #     if char in alpha:
-        #         if decode is False:
-        #             tempvar1 = (alpha.find(char) + shift) % 26
-        #         else:
-        #             tempvar1 = (alpha.find(char) - shift) % 26
-        #         fho.write(alpha[tempvar1])
-        #     else:
-        #         fho.write(char)
-
-
-# keylen = len(keyword) #counts the length of the keyword
-# textlen = len(line) #counts length of line of text from read file
-# keyindex = 0
-# textindex = 0
-# char1 = ""
-# char2 =""
-# def cipherText(string1, key):
-#     cipher_text = []
-#     for i in range(len(string1)):
-#         x = (ord(string1[i]) + ord(key[i])) % 26
-#         x += ord('A')
-#         cipher_text.append(chr(x))
-#     return("" . join(cipher_text))
-
-# text = "code"
-# key = "team"
-# def solve(text, key):
-#     cip = []
-#     start = ord('a')
-#     for l, k in zip(text, key):
-#         shift = ord(k) - start
-#         pos = start + (ord(l) - start + shift) % 26
-#         cip.append(chr(pos))
-#     return ''.join([l for l in cip])
-
-
-#     args = get_args()
-#     fh = open(args.file, "r") #brings in file
-#     line = fh.readline() #reads a line
-#     keyword = args.keyword #brings in keyword
-#     keylen = len(keyword) #counts the length of the keyword
-#     textlen = len(line) #counts length of line of text from read file
-#     keyindex = 0
-#     textindex = 0
-#     char1 = ""
-#     char2 =""
-     
-# # This function returns the# encrypted text generated# with the help of the key
-# def cipherText(line, keyword, textlen):
-#     cipher_text = []
-#     for i in range(textlen):
-#         x = (ord(line[i]) +
-#              ord(keyword[i])) % 26
-#         x += ord('A')
-#         cipher_text.append(chr(x))
-#     return("" . join(cipher_text))
-     
-# # This function decrypts the# encrypted text and returns# the original text
-# def originalText(cipher_text, keyword):
-#     orig_text = []
-#     for i in range(len(cipher_text)):
-#         x = (ord(cipher_text[i]) -
-#              ord(keyword[i]) + 26) % 26
-#         x += ord('A')
-#         orig_text.append(chr(x))
-#     return("" . join(orig_text))
