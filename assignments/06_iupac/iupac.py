@@ -8,19 +8,14 @@ Purpose: Rock the Casbah
 
 # /bin/import_list.txt
 import argparse
-
 # import csv
 # import emoji
 import io
 import os
-
 # import random
 import re
-
 # import string
 import sys
-
-
 # from pprint import pprint
 # from pydash import flatten
 # from tabulate import tabulate
@@ -67,24 +62,40 @@ def main():
     #Key / Value
     trans = {"R": "[AG]","Y": "[CT]","S": "[GC]","W": "[AT]","K": "[GT]","M": "[AC]","B": "[CGT]","D": "[AGT]","H": "[ACT]","V": "[ACG]","N": "[ACGT]",}
     index = 0
-
+    temp = []
     ##the keys are the codons and the values are the residues.
     for line in args.sequence:  # works
         tempvar = line.rstrip().split()
-        print(tempvar)
-        trans[tempvar[index]] = tempvar[index+1]
-        print(trans[tempvar[0]])
+        for letter in tempvar:
+            for char in letter:
+                if trans.get(char.upper()) is None:
+                    temp.append(char)
+                else:
+                    chartemp = trans.get(char.upper()) 
+                    temp.append(chartemp)
+            
+            printtemp = ''.join(temp)
+            printstr = str(args.sequence)
+            printstr1 = printstr.strip("[]'")
+            #print(f' {args.sequence} {str(temp.strip())}')
+            print(f'{printstr1} {printtemp}')
+    #         args.outfile.write("-")
+    #     else:
+    #         args.outfile.write(codon_table.get(codon.upper()))
+        #trans[tempvar[index]] = tempvar[index+1]
+        #print(trans[tempvar[0]])
         # Works
-        basepairs
-    k = 3
-    seq = args.sequence
-    for codon in [seq[i : i + k] for i in range(0, len(seq), k)]:
-        if codon_table.get(codon.upper()) is None:
-            args.outfile.write("-")
-        else:
-            args.outfile.write(codon_table.get(codon.upper()))
-    args.outfile.write("\n")
-    print(f'Output written to "{args.outfile.name}".')
+        #basepairs
+    exit()
+    # k = 3
+    # seq = args.sequence
+    # for codon in [seq[i : i + k] for i in range(0, len(seq), k)]:
+    #     if codon_table.get(codon.upper()) is None:
+    #         args.outfile.write("-")
+    #     else:
+    #         args.outfile.write(codon_table.get(codon.upper()))
+    # args.outfile.write("\n")
+    # print(f'Output written to "{args.outfile.name}".')
 
 
 
