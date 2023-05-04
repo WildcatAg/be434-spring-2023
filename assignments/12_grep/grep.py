@@ -52,10 +52,6 @@ def get_args():
                         default= sys.stdout)
 
     args = parser.parse_args()
-    
-    #fh = re.search("txt\b", args.file)
-    #fh = os.path.isfile(args.file)
-    #patternhandle = str(args.pattern)
 
     if os.path.isfile(args.file) == False:
         #parser.error(f"No such file or directory: '{sys.stdin}'")   
@@ -70,11 +66,21 @@ def main():
     args = get_args()
     fh = open(args.file, "r")
     fho = args.outfile
-    search_var = args.pattern
+    search_var = str(args.pattern)
     new_list = []
     idx = 1
     temp_line = ""
-    
+
+    # for char in search_var:
+    #     if char.isalpha() == False:
+    #         #char = re.sub("[^A-Za-z]","",search_var)
+    #         char = search_var.lstrip()
+    #         print(char)
+    #         return char
+    #     else:
+    #         print(char)
+    # exit()
+
     for line in fh.readlines():#print(line) whole thing spits out
         #print(search_var)
         #tempvar = re.search(search_var, line) #	Returns a Match object if there is a match anywhere in the string
@@ -82,7 +88,12 @@ def main():
         #tempvar = re.findall(search_var, line) #	Returns a list containing all matches
         #if tempvar != []:
         #if tempvar == True
-        if re.search(search_var, line):    
+        if args.insensitive:
+            if re.search(search_var, line, re.IGNORECASE):
+                print(line.rstrip())
+        if re.search(search_var, line):
+        #if re.search(search_var, line, re.IGNORECASE): 
+        #if re.search(search_var, line, re.I):   
             print(line.rstrip())
 
 
