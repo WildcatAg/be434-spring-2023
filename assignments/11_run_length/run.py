@@ -62,7 +62,6 @@ def rle(sequence):
     prev_char = ''
     index = 1 #start at 1
     
-    #if not sequence: return ''
     for char in sequence:
     #for char in args.sequence: NO
         # If the prev and current characters don't match...
@@ -72,7 +71,7 @@ def rle(sequence):
                 if count == 1:
                     encoding += prev_char
                 else:
-                    encoding +=  prev_char + str(count)
+                    encoding +=  prev_char + str(count) #need to declare counting index as a string to print
             count = 1
             prev_char = char
         else:
