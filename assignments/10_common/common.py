@@ -32,13 +32,11 @@ def get_args():
     parser.add_argument('file1',
                     help='Input file 1',
                     metavar='FILE1',
-                    type=argparse.FileType('rt'),
                     default=None)   
     
     parser.add_argument('file2',
                     help='Input file 2',
                     metavar='FILE2',
-                    type=argparse.FileType('rt'),
                     default=None)   
 
     parser.add_argument('-o',
@@ -58,46 +56,68 @@ def main():
     """Make a jazz noise here"""
     #The program should find sequences are shared & The program should find common words
     args = get_args()
+    fh1 = open(args.file1,'r')
+    fh2 = open(args.file2, 'r')
+    printtext = []
+    for line1 in fh1.readlines(): 
+        for word1 in line1.split():
+            tempvar1 = word1
+            for line2 in fh2.readlines():
+                for word2 in line2.split():
+                    tempvar2 = word2  
+                    if tempvar1 == tempvar2:
+                        printtext.append(tempvar1)
+    print(printtext)
+
+    # fh1 = args.file1 #file handle opens -> need to read it now
+    # fh2 = args.file2
     
-    fh1 = args.file1 #file handle opens -> need to read it now
-    fh2 = args.file2
+    # fhread1 = fh1.read() #read the open files and intialize a variable to do it
+    # fhread2 = fh2.read()
+    # fho = args.outfile
+    # comp_set1 = set() #comparative set 1
+    # comp_set2 = set() #comparative set 2
+    # compoutfile = set() #file to write values to
     
-    fhread1 = fh1.read() #read the open files and intialize a variable to do it
-    fhread2 = fh2.read()
-    fho = args.outfile
-    comp_set1 = set() #comparative set 1
-    comp_set2 = set() #comparative set 2
-    compoutfile = set() #file to write values to
-    
-    #open each file, read the line, split to words to list, 
-    # assign list to set
-    ####
-    xxx = ""
-    #for fh1 in args.file1:
-    for line1 in fhread1:
-        
-        #for word1 in line1:
-        #for word1 in line1.splitlines().split()
-        #for word1 in line1.split(re.sub('[^a-zA-Z]', '', word1)):
-        comp_set1.add(fhread1)
-        print(comp_set1)    #printfriendly = ", ".join(compoutfile)
-            #comp_set1 = comp_set1.add(word1) --NO
+    # for line in fh1.readlines():
+    #     print(line)
+    # exit()
+
+
+
+
+
+
+    # #open each file, read the line, split to words to list, 
+    # # assign list to set
+    # ####
+    # xxx = ""
+    # #for fh1 in args.file1:
+    # for line1 in fhread1:
+    #     print(line1)
+    #     exit()
+    #     #for word1 in line1:
+    #     #for word1 in line1.splitlines().split()
+    #     #for word1 in line1.split(re.sub('[^a-zA-Z]', '', word1)):
+    #     comp_set1.add(fhread1)
+    #     print(comp_set1)    #printfriendly = ", ".join(compoutfile)
+    #         #comp_set1 = comp_set1.add(word1) --NO
                     
-    #open each file, read the line, split to words, assign to set2
-    #for fh2 in args.file2:
-    for line2 in fhread2:        
-        #for word2 in line2:
-        comp_set2.add(fhread2)
-                #comp_set2 = comp_set2.add(word2) --NO
-            #for word2 in line2.split(re.sub('[^a-zA-Z]', '', word2)):
-            #   #re.sub('[^a-zA-Z]', '', word2)
-    #compare sets and write commons to a outfile
+    # #open each file, read the line, split to words, assign to set2
+    # #for fh2 in args.file2:
+    # for line2 in fhread2:        
+    #     #for word2 in line2:
+    #     comp_set2.add(fhread2)
+    #             #comp_set2 = comp_set2.add(word2) --NO
+    #         #for word2 in line2.split(re.sub('[^a-zA-Z]', '', word2)):
+    #         #   #re.sub('[^a-zA-Z]', '', word2)
+    # #compare sets and write commons to a outfile
     
-    compoutfile = comp_set1.intersection(comp_set2)
-    printfriendly = ", ".join(compoutfile)
+    # compoutfile = comp_set1.intersection(comp_set2)
+    # printfriendly = ", ".join(compoutfile)
     
-    print(compoutfile)
-    print(printfriendly)
+    # print(compoutfile)
+    # print(printfriendly)
 
 
        #If the "-o|--outfile" option is provided, 
