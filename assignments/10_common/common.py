@@ -47,14 +47,11 @@ def get_args():
                     default= sys.stdout)
 
     args = parser.parse_args()
-    #The program should halt with an error message if either of the positional arguments are not 
-    # the names of valid, readable files
     return args
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
-    #The program should find sequences are shared & The program should find common words
     args = get_args()
     fh1 = open(args.file1,'r')
     fh2 = open(args.file2, 'r')
@@ -67,7 +64,17 @@ def main():
                     tempvar2 = word2  
                     if tempvar1 == tempvar2:
                         printtext.append(tempvar1)
-    print(printtext)
+    #printtext1 = str(printtext.strip("[]'"))
+                        printtext1 = str(printtext)
+                        p2 = printtext1.strip("[]") #Works no quotes, no brackets
+    print(printtext1)
+    #print(p2) #Works no quotes, no brackets
+
+
+
+
+
+
 
     # fh1 = args.file1 #file handle opens -> need to read it now
     # fh2 = args.file2
